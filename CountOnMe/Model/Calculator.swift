@@ -17,4 +17,18 @@ class Calculator {
         }
         return result
     }
+
+    func  multiplication (num1: Int, num2: Int) -> Int {
+        return num1 * num2
+    }
+
+    func division (num1: Int, num2: Int) ->
+    Int {
+        return num1 / num2
+    }
+
+    func substraction (num1: Int, num2: Int) ->
+    Int {
+        return num1 - num2
+    }
 }
