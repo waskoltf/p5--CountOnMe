@@ -12,58 +12,50 @@ import XCTest
 
 final class CountOnMeTests: XCTestCase {
 
-    func testAddition() {
-        // arrange, act, assert
-        //
+    // sut (System Under Test)
+    private var calculator: Calculator!
+
+    private var text: String = ""
+    private var alertMessage: String = ""
+
+    func testSiJeNaiPasDejaDoperateursAlorsLoperateurSajoute() {
         // arrange
-        let calculator = Calculator()
-        let operands: [Int] = [1, 2, 3]
-        let expectedResult = 6
+        calculator = Calculator(delegate: self)
+
         // act
-        let result = calculator.getAddition(from: operands)
+        calculator.additionButtonHasBeenTapped()
+
         // assert
-        XCTAssertEqual(result, expectedResult, "The result should be \(expectedResult), instead it's: \(result)")
+        XCTAssertEqual(self.text, " + ")
     }
-    func testSubstraction() {
-        // arrange, act, assert
-        //
-        // arrange
-        let calculator = Calculator()
-        let num1 = 10
-        let num2 = 3
-        let expectedResult = 7
-//        Act
-        let actualDifference = calculator.substraction(num1: num1, num2: num2)
 
-        // Assert
-             XCTAssertEqual(actualDifference, expectedResult)    }
-
-    func testMultiplication() {
-        // arrange, act, assert
-        //
+    func testSiJaiDejaUnOperateurAlorsJaiUnMessageDerreurQuandJajouteLoperateurPlus() {
         // arrange
-        // Arrange
-        let calculator = Calculator()
-        let num1 = 5
-        let num2 = 7
-        let expectedProduct = 35
-        // Act
-        let actualProduct = calculator.multiplication(num1: num1, num2: num2)
+        calculator = Calculator(delegate: self)
+        let expectedAlertMessage = "Un operateur est déja mis !"
 
-        // Assert
-        XCTAssertEqual(actualProduct, expectedProduct)
+        // act
+        calculator.additionButtonHasBeenTapped()
+        calculator.additionButtonHasBeenTapped()
+
+        // assert
+        XCTAssertEqual(self.alertMessage, expectedAlertMessage)
     }
-    func testDivision() {
-        // arrange, act, assert
-        //
-        // arrange
-        let calculator = Calculator()
-        let num1 = 14
-        let num2 = 2
-        let expectedQuotient = 7
-        // Act
-        let actualQuotient = calculator.division(num1: num1, num2: num2)
-        // Assert
-        XCTAssertEqual(actualQuotient, expectedQuotient)
+}
+
+// MARK: - CalculatorDelegate
+
+extension CountOnMeTests: CalculatorDelegate {
+
+    func resetText() {
+        text = ""
     }
+
+    func addText(_ text: String) {
+        self.text.append(text)
     }
+
+    func showAlert(title: String, message: String) {
+        alertMessage = message
+    }
+}

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1FA43BD3224E569900F565CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BD2224E569900F565CB /* AppDelegate.swift */; };
-		1FA43BD5224E569900F565CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BD4224E569900F565CB /* ViewController.swift */; };
-		1FA43BD8224E569900F565CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD6224E569900F565CB /* Main.storyboard */; };
+		1FA43BD5224E569900F565CB /* CalculatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BD4224E569900F565CB /* CalculatorController.swift */; };
+		1FA43BD8224E569900F565CB /* CalculatorController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD6224E569900F565CB /* CalculatorController.storyboard */; };
 		1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD9224E569A00F565CB /* Assets.xcassets */; };
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
 		EAF0974829C4718F009A38B5 /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0974729C4718F009A38B5 /* CountOnMeTests.swift */; };
@@ -29,8 +29,8 @@
 /* Begin PBXFileReference section */
 		1FA43BCF224E569900F565CB /* CountOnMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountOnMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA43BD2224E569900F565CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FA43BD4224E569900F565CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1FA43BD7224E569900F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1FA43BD4224E569900F565CB /* CalculatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorController.swift; sourceTree = "<group>"; };
+		1FA43BD7224E569900F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CalculatorController.storyboard; sourceTree = "<group>"; };
 		1FA43BD9224E569A00F565CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FA43BDC224E569A00F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,39 +78,39 @@
 		1FA43BD1224E569900F565CB /* CountOnMe */ = {
 			isa = PBXGroup;
 			children = (
+				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
 				EAD9BD1D29CD426D0088EBC3 /* Support File */,
 				EAD9BD1F29CD43A60088EBC3 /* Model */,
-				EAD9BD1E29CD42AE0088EBC3 /* View */,
-				EAD9BD1C29CD42450088EBC3 /* Controller */,
+				EAD9BD1C29CD42450088EBC3 /* Features */,
 			);
 			path = CountOnMe;
 			sourceTree = "<group>";
 		};
-		EAD9BD1C29CD42450088EBC3 /* Controller */ = {
+		EAD9BD1C29CD42450088EBC3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				1FA43BD4224E569900F565CB /* ViewController.swift */,
+				EAD9BD1E29CD42AE0088EBC3 /* Calculator */,
 			);
-			path = Controller;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		EAD9BD1D29CD426D0088EBC3 /* Support File */ = {
 			isa = PBXGroup;
 			children = (
+				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
 				1FA43BDE224E569A00F565CB /* Info.plist */,
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
-				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
 			);
 			path = "Support File";
 			sourceTree = "<group>";
 		};
-		EAD9BD1E29CD42AE0088EBC3 /* View */ = {
+		EAD9BD1E29CD42AE0088EBC3 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
-				1FA43BD6224E569900F565CB /* Main.storyboard */,
+				1FA43BD6224E569900F565CB /* CalculatorController.storyboard */,
+				1FA43BD4224E569900F565CB /* CalculatorController.swift */,
 			);
-			path = View;
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 		EAD9BD1F29CD43A60088EBC3 /* Model */ = {
@@ -213,7 +213,7 @@
 			files = (
 				1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */,
 				1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */,
-				1FA43BD8224E569900F565CB /* Main.storyboard in Resources */,
+				1FA43BD8224E569900F565CB /* CalculatorController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FA43BD5224E569900F565CB /* ViewController.swift in Sources */,
+				1FA43BD5224E569900F565CB /* CalculatorController.swift in Sources */,
 				1FA43BD3224E569900F565CB /* AppDelegate.swift in Sources */,
 				EAF0974F29C472A7009A38B5 /* Calculator.swift in Sources */,
 			);
@@ -277,12 +277,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1FA43BD6224E569900F565CB /* Main.storyboard */ = {
+		1FA43BD6224E569900F565CB /* CalculatorController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1FA43BD7224E569900F565CB /* Base */,
 			);
-			name = Main.storyboard;
+			name = CalculatorController.storyboard;
 			sourceTree = "<group>";
 		};
 		1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */ = {
@@ -420,6 +420,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/CountOnMe/Support File/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,6 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/CountOnMe/Support File/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,7 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.wass.CountOnMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,7 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.wass.CountOnMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
