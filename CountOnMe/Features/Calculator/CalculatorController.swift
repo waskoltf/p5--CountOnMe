@@ -70,17 +70,12 @@ class CalculatorController: UIViewController {
 
 extension CalculatorController: CalculatorDelegate {
 
-    func ClearText() {
-        textView.text = ""
-    }
-
-    func actualTexte(_: String) {
-        textView.text = calculator.textCalculator
+    func clearText(initialValue: String) {
+        textView.text = initialValue
     }
 
     func addText(_ text: String) {
         textView.text.append(text)
-
     }
 
     func showAlert(title: String, message: String) {

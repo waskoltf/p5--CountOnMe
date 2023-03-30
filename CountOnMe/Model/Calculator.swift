@@ -14,11 +14,9 @@ import Foundation
 // - Afficher une alerte
 
 protocol CalculatorDelegate {
-    func ClearText()
+    func clearText(initialValue: String)
     func addText(_ text: String)
     func showAlert(title: String, message: String)
-//    func actualTexte(_texte: String)
-    func actualTexte(_: String)
 }
 
 class Calculator {
@@ -29,7 +27,7 @@ class Calculator {
         self.delegate = delegate
     }
 
-  var textCalculator: String = ""
+    private var textCalculator: String = ""
 
     // 3 + 3 = -> ["3", "+", "3", "="]
     private var elements: [String] {
@@ -99,6 +97,12 @@ class Calculator {
             delegate?.showAlert(title: "Zero", message: "Démarrez un nouveau calcul !")
             return
         }
+
+        if expressionHaveResult {
+            delegate?.showAlert(title: "Information !", message: "Veuillez effacer votre calcul ou en recommencer un nouveau")
+            return
+        }
+
         // Create local copy of operations
         var operationsToReduce = elements
         // Iterate over operations while an operand still here
@@ -107,6 +111,7 @@ class Calculator {
             let operand = operationsToReduce[1]
             let right = Int(operationsToReduce[2])!
             let result: Int
+
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
@@ -118,11 +123,16 @@ class Calculator {
                 result = left / right
             default: fatalError("Unknown operator !")
             }
+
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
         }
+        textCalculator.append(" = \(operationsToReduce.first!)")
         delegate?.addText(" = \(operationsToReduce.first!)")
-        print("fini")
+
+        print("fini: \(String(describing: operationsToReduce.first))")
+//        print("fini: \(operationsToReduce.first)")
+
     }
 
 //    private func resetText(texte: String) {
@@ -131,10 +141,12 @@ class Calculator {
 
     func numberButtonHasBeenTouched(numberText: String) {
         if expressionHaveResult {
-            delegate?.ClearText()
+            textCalculator = numberText
+            delegate?.clearText(initialValue: numberText)
+        } else {
+            textCalculator += numberText
+            delegate?.addText(numberText)
         }
-        textCalculator += numberText
-        delegate?.actualTexte(_: numberText)
 
     }
 }
