@@ -72,10 +72,12 @@ extension CalculatorController: CalculatorDelegate {
 
     func clearText(initialValue: String) {
         textView.text = initialValue
+        print("tu utilise clearTexte")
     }
 
     func addText(_ text: String) {
         textView.text.append(text)
+        print("tu utilise addTexte")
     }
 
     func showAlert(title: String, message: String) {

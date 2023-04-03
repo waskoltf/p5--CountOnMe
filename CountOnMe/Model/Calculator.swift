@@ -5,14 +5,12 @@
 //  Created by Riboku🎯 on 17/03/2023.
 //  Copyright © 2023 Vincent Saluzzo. All rights reserved.
 //
-
 import Foundation
 
 // Actions réalisés par le VC:
 // - Réinitialisation du texte
 // - Ajout de texte (append)
 // - Afficher une alerte
-
 protocol CalculatorDelegate {
     func clearText(initialValue: String)
     func addText(_ text: String)
@@ -35,7 +33,6 @@ class Calculator {
     }
 
     // Error check computed variables
-
     private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
     }
@@ -51,11 +48,15 @@ class Calculator {
     private var expressionHaveResult: Bool {
         return textCalculator.firstIndex(of: "=") != nil
     }
+    var newResult: [Int] = []
 
     // Public Interface
 
     func additionButtonHasBeenTapped() {
-        if canAddOperator {
+        if expressionHaveResult {
+            textCalculator = "\(newResult[0]) + "
+            delegate?.clearText(initialValue: textCalculator)
+        } else if canAddOperator {
             textCalculator.append(" + ")
             delegate?.addText(" + ")
         } else {
@@ -64,23 +65,34 @@ class Calculator {
     }
 
     func SubstractionButtonHasBeenTapped() {
-        if canAddOperator {
+        if expressionHaveResult {
+            textCalculator = "\(newResult[0]) - "
+            delegate?.clearText(initialValue: textCalculator)
+        } else if canAddOperator {
             textCalculator.append(" - ")
             delegate?.addText(" - ")
         } else {
             delegate?.showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
         }
     }
+
     func multiplicationnButtonHasBeenTapped() {
-        if canAddOperator {
+        if expressionHaveResult {
+            textCalculator = "\(newResult[0]) x "
+            delegate?.clearText(initialValue: textCalculator)
+        } else if canAddOperator {
             textCalculator.append(" x ")
             delegate?.addText(" x ")
         } else {
             delegate?.showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
         }
     }
+
     func divisionButtonHasBeenTapped() {
-        if canAddOperator {
+        if expressionHaveResult {
+            textCalculator = "\(newResult[0]) ÷ "
+            delegate?.clearText(initialValue: textCalculator)
+        } else if canAddOperator {
             textCalculator.append(" ÷ ")
             delegate?.addText(" ÷ ")
         } else {
@@ -119,6 +131,7 @@ class Calculator {
             case "÷":
                 if right == 0 {
                     delegate?.showAlert(title: "zero", message: "Division par zéro impossible !")
+                    return
                 }
                 result = left / right
             default: fatalError("Unknown operator !")
@@ -126,19 +139,34 @@ class Calculator {
 
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
+//            rajouter la logique du + ici
         }
         textCalculator.append(" = \(operationsToReduce.first!)")
         delegate?.addText(" = \(operationsToReduce.first!)")
 
         print("fini: \(String(describing: operationsToReduce.first))")
+
 //        print("fini: \(operationsToReduce.first)")
+        print("on est dans le calcul")
+        print(textCalculator)
+        print(operationsToReduce.first!)
+        print("on est dans le calcul")
+        if let result = Int(operationsToReduce.first!) {
+            newResult.append(result)
+        }
 
     }
 
-//    private func resetText(texte: String) {
-//        delegate?.actualTexte(_texte: texte)
-//       }
-
+//    func numberButtonHasBeenTouched(numberText: String) {
+//        if expressionHaveResult {
+//            textCalculator = numberText
+//            delegate?.addText(numberText)
+//        } else {
+//            textCalculator += numberText
+//            delegate?.addText(numberText)
+//        }
+//
+//    }
     func numberButtonHasBeenTouched(numberText: String) {
         if expressionHaveResult {
             textCalculator = numberText
@@ -149,4 +177,29 @@ class Calculator {
         }
 
     }
+
+//    func numberButtonHasBeenTouched(numberText: String) {
+//
+//        if expressionHaveResult {
+//            print("ahaha")
+//            print(newResult)
+//            print(textCalculator)
+//            textCalculator = numberText
+//            if numberText.last == "+"{
+//                // resultat + nouveau nombre
+//                print("on est dans le +")
+//                var firstValueAsString = String(newResult[0])
+//                firstValueAsString += numberText
+//                delegate?.addText(firstValueAsString)
+//            } else {
+////                nouveau calcul on clear le texte
+//                delegate?.clearText(initialValue: numberText)
+//            }
+//        } else {
+//            textCalculator += numberText
+//            delegate?.addText(numberText)
+//            print(textCalculator)
+//        }
+//
+//    }
 }
