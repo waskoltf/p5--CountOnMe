@@ -139,7 +139,8 @@ class Calculator {
                  default: fatalError("Unknown operator !")
                  }
 
-                 operationsToReduce[index - 1...index + 1] = ["\(result)"]
+                 operationsToReduce.replaceSubrange(index-1...index+1, with: ["\(result)"])
+
              } else {
                  let left = Int(operationsToReduce[0])!
                  let operand = operationsToReduce[1]
@@ -156,6 +157,7 @@ class Calculator {
                  operationsToReduce.insert("\(result)", at: 0)
              }
          }
+//        print(operationsToReduce.last)
 
          textCalculator.append(" = \(operationsToReduce.first!)")
          delegate?.addText(" = \(operationsToReduce.first!)")
@@ -165,65 +167,6 @@ class Calculator {
          }
      }
 
-//    func equalButtonHasBeenTapped() {
-//            guard expressionIsCorrect else {
-//              delegate?.showAlert(title: "Zero", message: "Entrez une expression correcte !")
-//                return
-//            }
-//            guard expressionHaveEnoughElement else {
-//                delegate?.showAlert(title: "Zero", message: "Démarrez un nouveau calcul !")
-//                return
-//            }
-//
-//            if expressionHaveResult {
-//                delegate?.showAlert(title: "Information !", message: "Veuillez effacer votre calcul ou en recommencer un nouveau")
-//                return
-//            }
-//
-//            // Create local copy of operations
-//            var operationsToReduce = elements
-//            // Iterate over operations while an operand still here
-//            while operationsToReduce.count > 1 {
-//                let left = Int(operationsToReduce[0])!
-//                let operand = operationsToReduce[1]
-//                let right = Int(operationsToReduce[2])!
-//                let result: Int
-//
-//                switch operand {
-//                case "+": result = left + right
-//                case "-": result = left - right
-//                case "x": result = left * right
-//                case "÷":
-//                    if right == 0 {
-//                        delegate?.showAlert(title: "zero", message: "Division par zéro impossible !")
-//                        return
-//                    }
-//                    result = left / right
-//                default: fatalError("Unknown operator !")
-//                }
-//
-//                operationsToReduce = Array(operationsToReduce.dropFirst(3))
-//                operationsToReduce.insert("\(result)", at: 0)
-//    //            rajouter la logique du + ici
-//            }
-//            textCalculator.append(" = \(operationsToReduce.first!)")
-//            delegate?.addText(" = \(operationsToReduce.first!)")
-//
-//            print("fini: \(String(describing: operationsToReduce.first))")
-//
-//    //        print("fini: \(operationsToReduce.first)")
-//            print("on est dans le calcul")
-//            print(textCalculator)
-//            print(operationsToReduce.first!)
-//            print("on est dans le calcul")
-//            newResult.removeAll()
-//
-//            if let result = Int(operationsToReduce.first!) {
-//                newResult.append(result)
-//            }
-//
-//        }
-
     func numberButtonHasBeenTouched(numberText: String) {
         if expressionHaveResult {
             textCalculator = numberText
@@ -232,6 +175,15 @@ class Calculator {
             textCalculator += numberText
             delegate?.addText(numberText)
         }
-
     }
+
+    func resetAllText () {
+        textCalculator = ""
+        delegate?.clearText(initialValue: textCalculator)
+        if textCalculator.last == nil {
+            textCalculator = "0"
+        }
+        return
+    }
+
 }

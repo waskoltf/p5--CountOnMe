@@ -64,6 +64,10 @@ class CalculatorController: UIViewController {
 
     }
 
+    @IBAction func tappedResetButton(_ sender: UIButton) {
+        calculator.resetAllText()
+    }
+
 }
 
 // MARK: - CalculatorDelegate
